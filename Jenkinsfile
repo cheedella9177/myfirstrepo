@@ -11,15 +11,7 @@ node {
     def SF_INSTANCE_URL = env.SF_INSTANCE_URL ?: "https://login.salesforce.com"
 
     def toolbelt = tool 'SFDX'
-
-
-    // -------------------------------------------------------------------------
-    // Run all the enclosed stages with access to the Salesforce
-    // JWT key credentials.
-    // -------------------------------------------------------------------------
-    
-    withEnv(["HOME=${env.WORKSPACE}"]) {
-        
+	
         withCredentials([file(credentialsId: SERVER_KEY_CREDENTALS_ID, variable: 'server_key_file')]) {
 
             // -------------------------------------------------------------------------
@@ -33,10 +25,9 @@ node {
                 }
             }
 
-
-          
+           
         }
-    }
+    
 }
 
 def command(script) {
