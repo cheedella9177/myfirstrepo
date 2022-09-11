@@ -34,16 +34,7 @@ node {
             }
 
 
-            // -------------------------------------------------------------------------
-            // Create new scratch org to test your code.
-            // -------------------------------------------------------------------------
-
-            stage('Validate the code') {
-                rc = command "${toolbelt}/sfdx force:source:deploy -c -p force-app/main/default -u HubOrg
-                if (rc != 0) {
-                    error 'Salesforce test scratch org creation failed.'
-                }
-            }
+          
         }
     }
 }
