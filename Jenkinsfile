@@ -9,10 +9,10 @@ node {
      def SF_USERNAME = env.SF_USERNAME
       withCredentials([file(credentialsId: 'SERVER_KEY_CREDENTALS_ID', variable: 'FILE')]) {
    
-        stage('Create Scratch Org') {
+        stage('Validate Org') {
            rc = command "${toolbelt}/sfdx auth:jwt:grant --instanceurl ${SF_INSTANCE_URL} --clientid ${SF_CONSUMER_KEY} --jwtkeyfile ${FILE} --username ${SF_USERNAME} --setalias UAT"
           
-           
+           rc = command "${toolbelt}/sfdx force:source:deploy -c -p force-app/main/default -u UAT"
 
         }
       }
