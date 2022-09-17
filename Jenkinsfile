@@ -12,7 +12,7 @@ node {
 	    
         }
          stage('validate') {
-		 rc = command "${toolbelt}/sfdx force:source:convert -d src/"           
+		 rc = command "${toolbelt}/sfdx force:source:convert -d force-app/main/default"           
 		 if (rc != 0) {
 			error 'Salesforce deploy and test run failed.'
 		    }
