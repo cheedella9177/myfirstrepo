@@ -13,7 +13,7 @@ node {
 	    
         }
          stage('validate') {        
-		 rc = command "${toolbelt}/sfdx force:source:deploy -c -p ./force-app/main/default -u UAT"
+		 rc = command "${toolbelt}/sfdx force:source:deploy -c -p ${folderName} -u UAT"
 		 if (rc != 0) {
 			error 'Salesforce deploy and test run failed.'
 		    }
