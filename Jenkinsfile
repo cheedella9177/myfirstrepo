@@ -12,7 +12,7 @@ node {
 	    rc = command "${toolbelt}/sfdx force:source:deploy -c -p force-app/main/default -u UAT"	   
         }
          stage('validate') {
-            rc = command "${toolbelt}/sfdx force:source:deploy -c -p JenkinsProj/force-app/main/default -u UAT"
+            rc = command "${toolbelt}/sfdx force:source:deploy -c -p /force-app/main/default -u UAT"
         }
       }
 }
