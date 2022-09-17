@@ -12,7 +12,8 @@ node {
             rc = command "${toolbelt}/sfdx auth:jwt:grant --instanceurl ${INSTANCE_url} --clientid ${credentialsVariable} --jwtkeyfile ${FILE} --username ${UNAME} --setalias UAT"
 	    
         }
-         stage('validate') {        
+         stage('validate') {
+		 checkout scm
 		 rc = command "${toolbelt}/sfdx force:source:deploy -c -p ${folderName} -u UAT"
 		 if (rc != 0) {
 			error 'Salesforce deploy and test run failed.'
