@@ -12,7 +12,7 @@ node {
 	    
         }
          stage('validate') {        
-		 rc = command "${toolbelt}/sfdx force:mdapi:deploy --wait 10 --deploydir force-app/main/default --targetusername UAT"
+		 rc = command "${toolbelt}/sfdx force:source:deploy -c -p ${env.WORKSPACE}/force-app/main/default -u UAT"
 		 if (rc != 0) {
 			error 'Salesforce deploy and test run failed.'
 		    }
