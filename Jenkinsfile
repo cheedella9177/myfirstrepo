@@ -17,7 +17,7 @@ node {
 	    
         }
          stage('validate') {
-		 checkout scm
+		 
 		 rc = command "${toolbelt}/sfdx force:source:deploy -c -p ${folderName} -u UAT"
 		 if (rc != 0) {
 			error 'Salesforce deploy and test run failed.'
