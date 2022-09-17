@@ -2,7 +2,8 @@
 import groovy.json.JsonSlurperClassic
 
 node {
-     def toolbelt = tool 'sfdx' 
+     def toolbelt = tool 'sfdx'
+     def folderName = 'force-app/main/default'
 	
      withEnv(["HOME=${env.WORKSPACE}"]) {	
       withCredentials([file(credentialsId: 'SERVER_KEY_CREDENTALS_ID', variable: 'FILE'),string(credentialsId: 'SF_CONSUMER_KEY', variable: 'credentialsVariable'),string(credentialsId: 'SF_INSTANCE_URL', variable: 'INSTANCE_url'),string(credentialsId: 'SF_CONSUMER_KEY', variable: 'credentialsVariable'),string(credentialsId: 'SF_USERNAME', variable: 'UNAME')]) {
@@ -12,7 +13,7 @@ node {
 	    
         }
          stage('validate') {        
-		 rc = command "${toolbelt}/sfdx force:org:display --targetusername UAT"
+		 rc = command "${toolbelt}/sfdx force:source:deploy -c -p ./force-app/main/default -u UAT"
 		 if (rc != 0) {
 			error 'Salesforce deploy and test run failed.'
 		    }
