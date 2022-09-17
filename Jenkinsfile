@@ -11,7 +11,12 @@ node {
             rc = command "${toolbelt}/sfdx auth:jwt:grant --instanceurl ${INSTANCE_url} --clientid ${credentialsVariable} --jwtkeyfile ${FILE} --username ${UNAME} --setalias UAT"
 	    
         }
-         
+         stage('validate') {        
+		 rc = command "${toolbelt}/sfdx force:mdapi:deploy -c -d force-app/main/default -u ${credentialsVariable} -w 20		 
+		 if (rc != 0) {
+			error 'Salesforce deploy and test run failed.'
+		    }
+        }
       }
 }
     }
