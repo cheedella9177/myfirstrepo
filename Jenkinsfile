@@ -9,7 +9,7 @@ node {
 	stage('Install sgd-git-delta plugin') {
             steps {
                 script {
-                   rc = command "${toolbelt}/echo y | sfdx plugins:install sfdx-git-delta"
+                   bat 'echo y | sfdx plugins:install sfdx-git-delta'
                 }
             }
         }
