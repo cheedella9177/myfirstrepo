@@ -12,7 +12,7 @@ node {
 		   
         }
          stage('validate') {
-            rc = command "${toolbelt}/sfdx force:source:deploy -p manifest/package.xml -u UAT -c"
+            rc = command "${toolbelt}/sfdx force:source:deploy -p force-app/main/default -u UAT -c"
         }
       }
 }
