@@ -15,10 +15,9 @@ node {
 	   rc = command "${toolbelt}/sfdx-git-delta --to HEAD --from HEAD~1 --output delta.xml"
         }
 
-         stage('validate') {
-            rc = command "${toolbelt}/sfdx force:source:deploy -p force-app/main/default -u UAT -c"
+         stage('Deploy Changes') {
+           rc = command "${toolbelt}/sf project deploy start --manifest delta.xml --target-org -u UAT --wait"
         }
-      }
 }
     }
 def command(script) {
