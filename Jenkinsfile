@@ -16,10 +16,14 @@ node {
 		   
         }
 	stage('Identify Delta Changes') {
+		println("Identiy Delta changes") 
 	   rc = command "${toolbelt}/sfdx-git-delta --to HEAD --from HEAD~1 --output delta.xml"
+		println("Delta changes")
+		println ${delta.xml}
         }
 
          stage('Deploy Changes') {
+		 println("Deploy changes") 
            rc = command "${toolbelt}/sf project deploy start --manifest delta.xml --target-org -u UAT --wait"
         }
 
