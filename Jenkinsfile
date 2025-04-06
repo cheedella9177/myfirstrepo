@@ -18,6 +18,8 @@ node {
          stage('Deploy Changes') {
            rc = command "${toolbelt}/sf project deploy start --manifest delta.xml --target-org -u UAT --wait"
         }
+
+      }
 }
     }
 def command(script) {
