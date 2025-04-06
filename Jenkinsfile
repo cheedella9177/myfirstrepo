@@ -13,7 +13,6 @@ node {
         }
 	stage('Identify Delta Changes') {
 	   rc = command "${toolbelt}/sfdx-git-delta --to HEAD --from HEAD~1 --output delta.xml"
-            }
         }
 
          stage('validate') {
