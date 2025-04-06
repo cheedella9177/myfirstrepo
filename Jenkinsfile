@@ -11,6 +11,7 @@ node {
         }
    
         stage('Authorize the org') {
+		println("authorizing") 
             rc = command "${toolbelt}/sfdx auth:jwt:grant --instanceurl ${INSTANCE_url} --clientid ${credentialsVariable} --jwtkeyfile ${FILE} --username ${UNAME} --setalias UAT"
 		   
         }
