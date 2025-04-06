@@ -7,11 +7,7 @@ node {
      withEnv(["HOME=${env.WORKSPACE}"]) {	
       withCredentials([file(credentialsId: 'SERVER_KEY_CREDENTALS_ID', variable: 'FILE'),string(credentialsId: 'SF_CONSUMER_KEY', variable: 'credentialsVariable'),string(credentialsId: 'SF_INSTANCE_URL', variable: 'INSTANCE_url'),string(credentialsId: 'SF_CONSUMER_KEY', variable: 'credentialsVariable'),string(credentialsId: 'SF_USERNAME', variable: 'UNAME')]) {
 	stage('Install sgd-git-delta plugin') {
-            steps {
-                script {
-                   bat 'echo y | sfdx plugins:install sfdx-git-delta'
-                }
-            }
+            rc = command "${toolbelt}/"echo y | sfdx plugins:install sfdx-git-delta"
         }
    
         stage('Authorize the org') {
